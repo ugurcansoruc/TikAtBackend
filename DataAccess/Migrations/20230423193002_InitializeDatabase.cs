@@ -15,11 +15,11 @@ namespace DataAccess.Migrations
                 name: "public");
 
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "Users",
                 schema: "public",
                 columns: table => new
                 {
-                    PersonID = table.Column<int>(type: "integer", nullable: false)
+                    ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
@@ -27,7 +27,7 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.PersonID);
+                    table.PrimaryKey("PK_Users", x => x.ID);
                 });
         }
 
@@ -35,7 +35,7 @@ namespace DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Persons",
+                name: "Users",
                 schema: "public");
         }
     }

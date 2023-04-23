@@ -4,7 +4,7 @@ using Entities.Concreate;
 
 namespace DataAccess.Concreate.EfPostgreSQL
 {
-    public class EfPSqlPersonDal : EfEntityRepositoryBase<Person, EfPSqlDbContext>, IPersonDal
+    public class EfPSqlUserDal : EfEntityRepositoryBase<User, EfPSqlDbContext>, IUserDal
     {
     }
 }

@@ -1,3 +1,5 @@
+using Business.Abstract;
+using Business.Concreate;
 using DataAccess.Abstract;
 using DataAccess.Concreate.EfPostgreSQL;
 using DataAccess.Concrete.EfPostgreSQL;
@@ -14,8 +16,8 @@ namespace WebAPI
 
             // Add services to the container.
             builder.Services.AddDbContext<EfPSqlDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Ef_Postgres_Db")));
-            builder.Services.AddScoped<IPersonDal, EfPSqlPersonDal>();
-
+            builder.Services.AddScoped<IUserDal, EfPSqlUserDal>();
+            builder.Services.AddScoped<IUserService, UserManager>();
             builder.Services.AddControllers();
 
 

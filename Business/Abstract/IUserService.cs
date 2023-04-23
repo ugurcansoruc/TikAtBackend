@@ -1,0 +1,16 @@
+﻿using Entities.Concreate;
+
+namespace Business.Abstract
+{
+    public interface IUserService
+    {
+        List<User> GetAll();
+
+        User GetById(int personId);
+        void Update(User user);
+
+        void Add(User user);
+
+        void Delete(User user);
+    }
+}

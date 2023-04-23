@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(EfPSqlDbContext))]
-    [Migration("20230416134710_InitializeDatabase")]
+    [Migration("20230423193002_InitializeDatabase")]
     partial class InitializeDatabase
     {
         /// <inheritdoc />
@@ -25,14 +25,14 @@ namespace DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Concreate.Person", b =>
+            modelBuilder.Entity("Entities.Concreate.User", b =>
                 {
-                    b.Property<int>("PersonID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("PersonID");
+                        .HasColumnName("ID");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PersonID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<int>("Age")
                         .HasColumnType("integer")
@@ -48,9 +48,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("text")
                         .HasColumnName("LastName");
 
-                    b.HasKey("PersonID");
+                    b.HasKey("ID");
 
-                    b.ToTable("Persons", "public");
+                    b.ToTable("Users", "public");
                 });
 #pragma warning restore 612, 618
         }

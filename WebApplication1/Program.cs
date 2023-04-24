@@ -1,10 +1,9 @@
 using Business.Abstract;
 using Business.Concreate;
 using DataAccess.Abstract;
-using DataAccess.Concreate.EfPostgreSQL;
+using DataAccess.Concreate;
 using DataAccess.Concrete.EfPostgreSQL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace WebAPI
 {
@@ -16,10 +15,25 @@ namespace WebAPI
 
             // Add services to the container.
             builder.Services.AddDbContext<EfPSqlDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Ef_Postgres_Db")));
-            builder.Services.AddScoped<IUserDal, EfPSqlUserDal>();
-            builder.Services.AddScoped<IUserService, UserManager>();
-            builder.Services.AddControllers();
 
+            // IRepositoryFactory, IUserRepository, IUserService ve IUnitOfWork ekleyin
+            builder.Services.AddScoped<IUnitOfWork>(provider => new UnitOfWork(provider.GetService<EfPSqlDbContext>()));
+            builder.Services.AddScoped<IRepositoryFactory>(provider => new RepositoryFactory(provider.GetService<EfPSqlDbContext>()));
+            builder.Services.AddScoped<IUserRepository>(provider => new UserRepository(provider.GetService<EfPSqlDbContext>()));
+            builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddControllers();
+          
+            try
+            {
+                var serviceProvider = builder.Services.BuildServiceProvider();
+                using var scope = serviceProvider.CreateScope();
+                var context = scope.ServiceProvider.GetService<EfPSqlDbContext>();
+                context.Database.Migrate();
+            }
+            catch
+            {
+            }
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

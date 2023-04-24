@@ -20,13 +20,13 @@ namespace WebAPI.Controllers
         [HttpGet("GetUser{_userID}" ,Name = "GetUser")]
         public User GetUser(int _userID)
         {
-            return _userService.GetById(_userID);
+            return _userService.GetUserByIdAsync(_userID).Result;
         }
 
         [HttpGet("GetAllUsers", Name = "GetUsers")]
         public IEnumerable<User> GetUsers()
         {
-            return _userService.GetAll();
+            return _userService.GetUsersAsync().Result;
         }
     }
 }

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(EfPSqlDbContext))]
-    [Migration("20230423193002_InitializeDatabase")]
+    [Migration("20230423230647_InitializeDatabase")]
     partial class InitializeDatabase
     {
         /// <inheritdoc />

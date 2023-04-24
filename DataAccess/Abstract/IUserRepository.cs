@@ -2,7 +2,7 @@
 
 namespace DataAccess.Abstract
 {
-    public interface IUserDal : IEntityRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
     }
 }

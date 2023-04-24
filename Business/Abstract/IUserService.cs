@@ -4,13 +4,10 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        List<User> GetAll();
-
-        User GetById(int personId);
-        void Update(User user);
-
-        void Add(User user);
-
-        void Delete(User user);
+        Task<User> CreateUserAsync(User user);
+        Task<User> GetUserByIdAsync(int id);
+        Task<IEnumerable<User>> GetUsersAsync();
+        Task<User> UpdateUserAsync(User user);
+        Task DeleteUserAsync(User user);
     }
 }

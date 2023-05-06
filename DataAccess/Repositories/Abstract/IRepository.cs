@@ -1,7 +1,6 @@
 ﻿using Entities.Abstract;
-using System.Linq.Expressions;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Repositories.Abstract
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity, new()
     {

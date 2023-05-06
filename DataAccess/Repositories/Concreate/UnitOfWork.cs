@@ -1,9 +1,9 @@
-﻿using DataAccess.Abstract;
+﻿using DataAccess.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Concreate
+namespace DataAccess.Repositories.Concreate
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
 

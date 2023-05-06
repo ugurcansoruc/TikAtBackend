@@ -1,15 +1,15 @@
-﻿using Entities.Concreate;
+﻿using Entities.Concreate.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataAccess.Concreate.EfPostgreSQL.Mapping
+namespace DataAccess.Repositories.Concreate.Mapping
 {
     public class UserMap : IEntityTypeConfiguration<User>
     {
-        public UserMap() {}
+        public UserMap() { }
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            /*
             builder.HasKey(p => p.ID);
             builder.Property(p => p.ID).UseIdentityColumn();
             builder.Property(p => p.ID).UseIdentityColumn().HasColumnName("ID");
@@ -24,7 +24,7 @@ namespace DataAccess.Concreate.EfPostgreSQL.Mapping
             builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate");
             builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
 
-            builder.ToTable("Users");
+            builder.ToTable("Users");*/
         }
     }
 }

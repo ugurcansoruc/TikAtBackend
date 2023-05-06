@@ -1,8 +1,8 @@
 using Business.Abstract;
 using Business.Concreate;
-using DataAccess.Abstract;
-using DataAccess.Concreate;
-using DataAccess.Concrete.EfPostgreSQL;
+using DataAccess.Repositories.Abstract;
+using DataAccess.Repositories.Concreate;
+using Entities.Concreate.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI
@@ -15,7 +15,8 @@ namespace WebAPI
 
             // Add services to the container.
             builder.Services.AddDbContext<EfPSqlDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Ef_Postgres_Db")));
-
+            builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<EfPSqlDbContext>();
+            
             // IRepositoryFactory, IUserRepository, IUserService ve IUnitOfWork ekleyin
             builder.Services.AddScoped<IUnitOfWork>(provider => new UnitOfWork(provider.GetService<EfPSqlDbContext>()));
             builder.Services.AddScoped<IRepositoryFactory>(provider => new RepositoryFactory(provider.GetService<EfPSqlDbContext>()));

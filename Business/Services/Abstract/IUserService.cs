@@ -1,4 +1,4 @@
-﻿using Entities.Concreate;
+﻿using Entities.Concreate.Identity;
 
 namespace Business.Abstract
 {

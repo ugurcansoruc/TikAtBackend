@@ -1,9 +1,9 @@
-﻿using DataAccess.Abstract;
+﻿using DataAccess.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Concreate
+namespace DataAccess.Repositories.Concreate
 {
-    public class RepositoryFactory:IRepositoryFactory
+    public class RepositoryFactory : IRepositoryFactory
     {
         private readonly DbContext _dbContext;
 

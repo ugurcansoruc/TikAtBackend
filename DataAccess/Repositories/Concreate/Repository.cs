@@ -1,8 +1,8 @@
-﻿using DataAccess.Abstract;
+﻿using DataAccess.Repositories.Abstract;
 using Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Concreate
+namespace DataAccess.Repositories.Concreate
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {

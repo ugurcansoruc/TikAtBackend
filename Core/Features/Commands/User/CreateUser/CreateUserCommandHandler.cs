@@ -17,8 +17,8 @@ namespace Core.Features.Commands.User.CreateUser
         {
             IdentityResult identityResult =  await userManager.CreateAsync(new()
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
+                Name = request.Name,
+                Surname = request.Surname,
                 Email = request.Email,
                 Age = request.Age,
             }, request.Password);

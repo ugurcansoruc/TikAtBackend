@@ -1,8 +1,10 @@
 using Business.Abstract;
 using Business.Concreate;
+using Core.Features.Commands.User.CreateUser;
 using DataAccess.Repositories.Abstract;
 using DataAccess.Repositories.Concreate;
 using Entities.Concreate.Identity;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI
@@ -14,9 +16,14 @@ namespace WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+            builder.Services.AddScoped<IRequestHandler<CreateUserCommandRequest, CreateUserCommandResponse>, CreateUserCommandHandler>();
+
+
             builder.Services.AddDbContext<EfPSqlDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Ef_Postgres_Db")));
             builder.Services.AddIdentity<User,Role>().AddEntityFrameworkStores<EfPSqlDbContext>();
-            
+
+
             // IRepositoryFactory, IUserRepository, IUserService ve IUnitOfWork ekleyin
             builder.Services.AddScoped<IUnitOfWork>(provider => new UnitOfWork(provider.GetService<EfPSqlDbContext>()));
             builder.Services.AddScoped<IRepositoryFactory>(provider => new RepositoryFactory(provider.GetService<EfPSqlDbContext>()));
